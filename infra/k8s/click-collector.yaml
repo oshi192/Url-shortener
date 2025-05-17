@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: click-collector
+spec:
+  replicas: 2
+  selector:
+    matchLabels: { app: click-collector }
+  template:
+    metadata:
+      labels: { app: click-collector }
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8081"
+        prometheus.io/path: "/actuator/prometheus"
+    spec:
+      containers:
+        - name: click-collector
+          image: your-dockerhub-username/service-click-collector:latest
+          ports: [{ containerPort: 8081 }]
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: click-collector
+spec:
+  type: ClusterIP
+  selector: { app: click-collector }
+  ports:
+    - port: 80
+      targetPort: 8081

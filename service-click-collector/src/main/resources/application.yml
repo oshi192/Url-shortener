@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://postgres:5432/urls
+    username: user
+    password: pass
+  jpa.hibernate.ddl-auto: update
+
+  kafka:
+    bootstrap-servers: kafka:9092
+    consumer:
+      group-id: collector
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: '*'
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,metrics,prometheus
