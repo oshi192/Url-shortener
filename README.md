@@ -42,10 +42,8 @@ A full-stack microservices project that lets you generate and redirect short URL
 | Services               | Java 21, Spring Boot        |
 | Data persistence       | PostgreSQL, Redis           |
 | Message bus            | Kafka + ZooKeeper           |
-| Metrics & Observability| Prometheus & Grafana (optional) |
 | UI                     | React, Vite, pnpm           |
 | Containerization       | Docker, Docker Compose      |
-| Kubernetes (optional)  | Minikube / GKE              |
 
 ---
 
@@ -60,18 +58,18 @@ A full-stack microservices project that lets you generate and redirect short URL
 
 ## Setup & Run (Docker Compose)
 
-1. **Clone the repo**
+**1. Clone the repo**
 ```bash
 git clone <your-repo-url>
 cd url-shortener
 ```
-2. Build & start all services
+**2. Build & start all services**
 ```
 cd infra
 docker compose up -d --build
 ```
 
-(Optional) Verify services
+**(Optional) Verify services**
 ```bash
 curl http://localhost:8080/actuator/health
 curl http://localhost:8081/actuator/health
