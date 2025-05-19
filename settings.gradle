@@ -1,0 +1,5 @@
+rootProject.name = 'url-shortener2'
+
+include 'service-url-shortener'
+include 'service-click-collector'
+
