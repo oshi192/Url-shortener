@@ -29,18 +29,4 @@ public class UrlController {
         var mapping = urlService.create(req.longUrl(), req.customAlias());
         return new ShortenResponse(mapping.getAlias());
     }
-
-    @GetMapping("/{alias}")
-    public void redirect(@PathVariable String alias,
-                         HttpServletRequest req,
-                         HttpServletResponse res) throws IOException {
-        String dest = urlService.resolve(alias);
-        kafka.send("clicks", Map.of(
-                "alias", alias,
-                "ua", req.getHeader("User-Agent"),
-                "geo", req.getRemoteAddr(),
-                "ts", Instant.now().toEpochMilli()
-        ));
-        res.sendRedirect(dest);
-    }
 }

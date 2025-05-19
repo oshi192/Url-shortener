@@ -26,36 +26,34 @@ export default function CreateShortUrl() {
   }
 
   return (
-    <div style={{ marginBottom: 32 }}>
-      <h2>Create a Short URL</h2>
-      <form onSubmit={handleSubmit} style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+    <div style={{ marginBottom: '2rem' }}>
+        <h2 style={{ color: 'var(--muted)' }}>Create a Short URL</h2>
+        <form onSubmit={handleSubmit} className="form-row">
         <input
-          type="url"
-          placeholder="Enter long URL"
-          value={longUrl}
-          onChange={e => setLongUrl(e.target.value)}
-          required
-          style={{ flex: '1 1 300px' }}
+         type="url"
+         placeholder="https://example.com/long/path"
+         value={longUrl}
+         onChange={e => setLongUrl(e.target.value)}
+         required
         />
         <input
-          type="text"
-          placeholder="Custom alias (optional)"
-          value={customAlias}
-          onChange={e => setCustomAlias(e.target.value)}
-          style={{ flex: '0 1 150px' }}
+         type="text"
+         placeholder="Custom alias (optional)"
+         value={customAlias}
+         onChange={e => setCustomAlias(e.target.value)}
+         style={{ flex: '0 0 150px' }}
         />
         <button type="submit">Shorten</button>
-      </form>
-
-      {error && <p style={{ color: 'red' }}>Error: {error}</p>}
-      {result && (
-        <p>
-          Your short URL is:{' '}
-          <a href={`http://localhost:8080/${result.alias}`} target="_blank" rel="noopener noreferrer">
-            http://localhost:8080/{result.alias}
-          </a>
+        </form>
+        {error && <p style={{ color: 'red' }}>Error: {error}</p>}
+        {result && (
+        <p>Your short URL:
+         <a href={`http://localhost:8080/${result.alias}`}
+            target="_blank" rel="noopener noreferrer">
+           http://localhost:8080/{result.alias}
+         </a>
         </p>
-      )}
+        )}
     </div>
   )
 }

@@ -19,3 +19,5 @@ management:
     web:
       exposure:
         include: health,metrics,prometheus
+server:
+  forward-headers-strategy: framework
