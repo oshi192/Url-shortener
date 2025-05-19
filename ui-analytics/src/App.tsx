@@ -1,4 +1,3 @@
-// ui-analytics/src/App.tsx
 import React from 'react'
 import CreateShortUrl from './components/CreateShortUrl'
 import ClickRateChart from './components/ClickRateChart'

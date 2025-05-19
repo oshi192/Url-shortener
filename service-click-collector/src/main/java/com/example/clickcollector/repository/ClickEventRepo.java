@@ -16,10 +16,10 @@ public interface ClickEventRepo extends JpaRepository<ClickEvent, Long> {
     List<GeoCount> byRegion();
 
     @Query("""
-  SELECT c.alias AS alias, COUNT(c) AS cnt
-    FROM ClickEvent c
-   GROUP BY c.alias
-   ORDER BY COUNT(c) DESC
-  """)
+            SELECT c.alias AS alias, COUNT(c) AS cnt
+              FROM ClickEvent c
+             GROUP BY c.alias
+             ORDER BY COUNT(c) DESC
+            """)
     List<AliasCount> findTopUrls(Pageable page);
 }

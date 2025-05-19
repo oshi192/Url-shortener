@@ -1,6 +1,4 @@
-# ui-analytics/Dockerfile
-
-# 1) Build the static assets
+# Static assets
 FROM node:20-alpine AS build
 WORKDIR /app
 COPY package.json pnpm-lock.yaml* ./
@@ -8,7 +6,7 @@ RUN npm install -g pnpm && pnpm install
 COPY . .
 RUN pnpm build
 
-# 2) Serve them with Nginx
+# Nginx
 FROM nginx:alpine
 COPY --from=build /app/dist /usr/share/nginx/html
 EXPOSE 80

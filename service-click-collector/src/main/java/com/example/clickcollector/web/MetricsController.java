@@ -5,11 +5,12 @@ import com.example.clickcollector.repository.GeoCount;
 import com.example.clickcollector.web.dto.RateDto;
 import com.example.clickcollector.web.dto.TopUrlDto;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.time.Instant;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController

@@ -77,5 +77,6 @@ curl http://localhost:8080/actuator/health
 curl http://localhost:8081/actuator/health
 ```
 
+![img.png](img.png)
 
 

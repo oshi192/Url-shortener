@@ -1,5 +1,4 @@
 package com.example.urlshortener.model;
-
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;

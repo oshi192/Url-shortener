@@ -10,7 +10,6 @@ export default defineConfig({
         target: 'http://localhost:8081',
         changeOrigin: true,
         secure: false,
-        // add X-Forwarded headers so Spring can pick up the real client IP
         headers: {
           'X-Forwarded-Host': 'localhost:3001',
           'X-Forwarded-Proto': 'http'

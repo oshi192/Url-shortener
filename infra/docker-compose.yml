@@ -1,6 +1,4 @@
-# infra/docker-compose.yml
 services:
-  # PostgreSQL
   postgres:
     image: postgres:15
     environment:
@@ -10,13 +8,11 @@ services:
     ports:
       - "5432:5432"
 
-  # Redis
   redis:
     image: redis:7
     ports:
       - "6379:6379"
 
-  # Zookeeper (Bitnami)
   zookeeper:
     image: bitnami/zookeeper:3.8
     environment:
@@ -24,23 +20,19 @@ services:
     ports:
       - "2181:2181"
 
-  # Kafka (Bitnami)
   kafka:
     image: bitnami/kafka:3.5
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       ALLOW_PLAINTEXT_LISTENER: "yes"
-      # Listen on all interfaces
       KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
-      # Advertise the Compose service name
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
     ports:
       - "9092:9092"
     depends_on:
       - zookeeper
 
-  # URL-Shortener service
   service-url-shortener:
     build:
       context: ../service-url-shortener
@@ -51,7 +43,6 @@ services:
     ports:
       - "8080:8080"
 
-  # Click-Collector service
   service-click-collector:
     build:
       context: ../service-click-collector
@@ -62,7 +53,6 @@ services:
       - "8081:8080"
     environment:
       SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
-  # Analytics UI
   ui-analytics:
     build:
       context: ../ui-analytics
