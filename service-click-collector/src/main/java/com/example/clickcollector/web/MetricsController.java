@@ -2,6 +2,8 @@ package com.example.clickcollector.web;
 
 import com.example.clickcollector.repository.ClickEventRepo;
 import com.example.clickcollector.repository.GeoCount;
+import com.example.clickcollector.web.dto.RateDto;
+import com.example.clickcollector.web.dto.TopUrlDto;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,9 +22,9 @@ public class MetricsController {
     }
 
     @GetMapping("/rate")
-    public Map<String, Long> rate() {
+    public RateDto rate() {
         long since = Instant.now().minusSeconds(60).toEpochMilli();
-        return Map.of("lastMinute", repo.countSince(since));
+        return new RateDto(repo.countSince(since));
     }
 
     @GetMapping("/geo")
@@ -31,9 +33,9 @@ public class MetricsController {
     }
 
     @GetMapping("/top")
-    public List<Map<String, ?>> topUrls() {
+    public List<TopUrlDto> topUrls() {
         return repo.findTopUrls(PageRequest.of(0, 10)).stream()
-                .map(a -> Map.of("alias", a.getAlias(), "count", a.getCnt()))
+                .map(a -> new TopUrlDto(a.getAlias(), a.getCnt()))
                 .collect(Collectors.toList());
     }
 }
